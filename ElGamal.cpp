@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 using namespace std;
-//ham luy thua modulo nhanh
+// Hàm tính (a^b) mod n
 long long modpow(long long a, long long b, long long n) {
     long long result = 1;
     a %= n;
