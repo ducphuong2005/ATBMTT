@@ -56,15 +56,15 @@ int main() {
         cout << "Nhập số nguyên tố q (khác p): ";
         cin >> q;
     } while (!isPrime(q) || q == p);
-
+//tinh n va phi
     int n = p * q;
     int phi = (p - 1) * (q - 1);
-
+//chon so mu cong khai e
     do {
         cout << "Nhập e (1 < e < " << phi << "), gcd(e, phi) = 1: ";
         cin >> e;
     } while (e <= 1 || e >= phi || gcd(e, phi) != 1);
-
+//tinh khoa bi mat d
     int d = modinv(e, phi);
     cout << "Khóa công khai (e, n): (" << e << ", " << n << ")\n";
     cout << "Khóa bí mật (d, n): (" << d << ", " << n << ")\n";
@@ -74,10 +74,10 @@ int main() {
         cout << "Nhập bản rõ m (0 <= m < n): ";
         cin >> m;
     } while (m < 0 || m >= n);
-
+//ma hoa
     int c = modpow(m, e, n);
     cout << "Bản mã sau khi mã hóa: " << c << endl;
-
+//giai ma
     int decrypted = modpow(c, d, n);
     cout << "Bản rõ sau khi giải mã: " << decrypted << endl;
 
