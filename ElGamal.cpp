@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 using namespace std;
-
+//ham luy thua modulo nhanh
 long long modpow(long long a, long long b, long long n) {
     long long result = 1;
     a %= n;
@@ -14,7 +14,7 @@ long long modpow(long long a, long long b, long long n) {
     }
     return result;
 }
-
+//kiem tra q có phai snt khong
 bool isPrime(int n) {
     if (n < 2) return false;
     for (int i = 2; i*i <= n; i++)
@@ -24,9 +24,10 @@ bool isPrime(int n) {
 }
 
 int main() {
+    //tao tinh ngau nhien
     srand(time(0));
     cout << "=== ElGamal Algorithm ===" << endl;
-
+//sinh khoa
     int q, g;
     do {
         cout << "Nhập số nguyên tố q: ";
@@ -42,7 +43,7 @@ int main() {
     int h = modpow(g, x, q);
     cout << "Public key (q, g, h): (" << q << ", " << g << ", " << h << ")\n";
     cout << "Private key x: " << x << endl;
-
+//ma hoa
     int m;
     do {
         cout << "Nhập thông điệp m (0 <= m < " << q << "): ";
@@ -50,13 +51,14 @@ int main() {
     } while (m < 0 || m >= q);
 
     int k = rand() % (q - 2) + 1;
+//tinh ciphertext    
     int p = modpow(g, k, q);
     int s = modpow(h, k, q);
     int c = (s * m) % q;
 
     cout << "Ciphertext: (" << p << ", " << c << ")\n";
-
-    int s_inv = modpow(p, q - 1 - x, q);  // p^(q-1-x) mod q chính là nghịch đảo
+//giai ma, s_inv la nghich dao s, Fetmat nho
+    int s_inv = modpow(p, q - 1 - x, q);  
     int decrypted = (c * s_inv) % q;
     cout << "Bản rõ sau khi giải mã: " << decrypted << endl;
 
